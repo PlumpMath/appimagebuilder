@@ -66,7 +66,8 @@ class Screenshot:
     self.resolution = `options["profile"].resolution["real"][0]` + "px" + "*" + `options["profile"].resolution["real"][1]` + "px"
 
     self.download()
-    self.build()
+    if os.path.isfile(self.filename):
+      self.build()
 
   def download(self):
     subprocess.call(["phantomjs", Local.path("phantomjs"), self.src.url, self.filename, self.resolution])
